@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { Admin } from '../../../models/admin.model';
-import { MatNativeDateModule } from '@angular/material/core';
-import { AdminService } from '../../../services/admin.service';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { EmployeeService } from '../../../services/employee.service';
+import { Employee } from '../../../models/employee.model';
 import { generateId } from '../../../utils/common.utils';
 
 @Component({
-  selector: 'app-admin-form',
+  selector: 'app-employee-form',
   imports: [
     CommonModule,
     FormsModule,
@@ -30,29 +30,29 @@ import { generateId } from '../../../utils/common.utils';
     MatSnackBarModule,
     RouterModule
   ],
-  templateUrl: './admin-form.component.html',
-  styleUrl: './admin-form.component.css',
+  templateUrl: './employee-form.component.html',
+  styleUrl: './employee-form.component.css',
   standalone: true
 })
-export class AdminFormComponent {
-  adminForm: FormGroup;
+export class EmployeeFormComponent {
+  employeeForm: FormGroup;
   isEditMode = false;
-  adminId: string = "";
+  employeeId: string = "";
 
   constructor(
     private fb: FormBuilder,
-    private adminService: AdminService,
+    private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.adminForm = this.fb.group({
+    this.employeeForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      birthDate: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.minLength(11)]],
       gender: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      address: ['', Validators.required]
     });
   }
 
@@ -60,54 +60,52 @@ export class AdminFormComponent {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.isEditMode = true;
-        this.adminId = params['id'];
-        this.loadAdminData(this.adminId);
+        this.employeeId = params['id'];
+        this.loademployeeData(this.employeeId);
       }
     });
   }
 
-  loadAdminData(id: string): void {
-    this.adminService.getAdmin(id).subscribe({
-      next: (admin) => {
-        const { password, ...adminData } = admin;
-        this.adminForm.patchValue(adminData);
-        this.adminForm.get('password')?.clearValidators();
-        this.adminForm.get('password')?.updateValueAndValidity();
+  loademployeeData(id: string): void {
+    this.employeeService.getEmployee(id).subscribe({
+      next: (employee) => {
+        const { ...employeeData } = employee;
+        this.employeeForm.patchValue(employeeData);
       },
       error: () => {
-        this.snackBar.open('Failed to load admin data', 'Close', { duration: 3000 });
+        this.snackBar.open('Failed to load employee data', 'Close', { duration: 3000 });
       }
     });
   }
 
   onSubmit(): void {
-    if (this.adminForm.invalid) {
+    if (this.employeeForm.invalid) {
       return;
     }
 
-    const adminId = this.isEditMode ? this.adminId : generateId();
+    const employeeId = this.isEditMode ? this.employeeId : generateId();
 
-    const adminData: Admin = {
-      ...this.adminForm.value,
-      id: adminId
+    const employeeData: Employee = {
+      ...this.employeeForm.value,
+      id: employeeId
     };
 
     const operation = this.isEditMode 
-      ? this.adminService.updateAdmin(this.adminId!, adminData)
-      : this.adminService.createAdmin(adminData);
+      ? this.employeeService.updateEmployee(this.employeeId!, employeeData)
+      : this.employeeService.createEmployee(employeeData);
 
     operation.subscribe({
       next: () => {
         this.snackBar.open(
-          `Admin ${this.isEditMode ? 'updated' : 'created'} successfully!`, 
+          `Employee ${this.isEditMode ? 'updated' : 'created'} successfully!`, 
           'Close', 
           { duration: 3000 }
         );
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/employee']);
       },
       error: () => {
         this.snackBar.open(
-          `Failed to ${this.isEditMode ? 'update' : 'create'} admin`, 
+          `Failed to ${this.isEditMode ? 'update' : 'create'} employee`, 
           'Close', 
           { duration: 3000 }
         );

@@ -26,6 +26,35 @@
       "birthDate": "2025-04-30T17:00:00.000Z",
       "gender": "male",
       "password": "admin123"
+    },
+    {
+      "id": "886368",
+      "firstName": "a",
+      "lastName": "bv",
+      "email": "aa@gmail.com",
+      "birthDate": "2025-05-16T17:00:00.000Z",
+      "gender": "female",
+      "password": "admin123"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "firstName": "Admin",
+      "lastName": "User2",
+      "email": "admin@gmail.com",
+      "phone": "081231231",
+      "gender": "male",
+      "address": "Jl.Jakarta"
+    },
+    {
+      "id": "365945",
+      "firstName": "aa",
+      "lastName": "cc",
+      "email": "win@aaa.com",
+      "phone": "081231231232",
+      "gender": "male",
+      "address": "test"
     }
   ]
 }
