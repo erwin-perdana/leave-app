@@ -1,0 +1,31 @@
+{
+  "admins": [
+    {
+      "id": "1",
+      "firstName": "Admin",
+      "lastName": "User",
+      "email": "admin@gmail.com",
+      "birthDate": "1998-01-01",
+      "gender": "male",
+      "password": "admin123"
+    },
+    {
+      "id": "2",
+      "firstName": "Erwin",
+      "lastName": "Perdana",
+      "email": "erwin@gmail.com",
+      "birthDate": "2025-04-30T17:00:00.000Z",
+      "gender": "male",
+      "password": "admin123"
+    },
+    {
+      "id": "957117",
+      "firstName": "Perdana",
+      "lastName": "Erwin",
+      "email": "perdana@gmail.com",
+      "birthDate": "2025-04-30T17:00:00.000Z",
+      "gender": "male",
+      "password": "admin123"
+    }
+  ]
+}

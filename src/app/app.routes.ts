@@ -1,9 +1,19 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { AdminComponent } from './pages/admin/admin.component';
+import { AdminComponent } from './pages/admin/admin/admin.component';
+import { authGuard } from './guards/auth.guards';
+import { AdminFormComponent } from './pages/admin/admin-form/admin-form.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { 
+      path: 'login',
+      data: { isLogout: true },
+      loadComponent: () => import('./pages/auth/login/login.component').then(m => m.LoginComponent) 
+    },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'admin', component: AdminComponent },
-  ];
+    { path: 'admin', component: AdminComponent, canActivate: [authGuard], pathMatch: 'prefix' },
+    { path: 'admin/new', component: AdminFormComponent, canActivate: [authGuard], pathMatch: 'prefix' },
+    { path: 'admin/edit/:id', component: AdminFormComponent, canActivate: [authGuard], pathMatch: 'full' },
+    { path: '**', redirectTo: '/dashboard' }
+];

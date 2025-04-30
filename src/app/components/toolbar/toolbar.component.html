@@ -7,6 +7,6 @@
     </button>
     <mat-menu #userMenu="matMenu">
         <button mat-menu-item>Profile</button>
-        <button mat-menu-item>Logout</button>
+        <button mat-menu-item (click)="$event.preventDefault(); logout()">Logout</button>
     </mat-menu>
 </mat-toolbar>
