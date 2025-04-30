@@ -3,13 +3,14 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { AdminService } from './admin.service';
+import { Admin } from '../models/admin.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private currentAdmin = new BehaviorSubject<any>(null);
+  private currentAdmin = new BehaviorSubject<Admin | null>(null);
 
   constructor(
     private router: Router,
@@ -63,6 +64,17 @@ export class AuthService {
       if (admin) {
         this.currentAdmin.next(JSON.parse(admin));
       }
+    }
+  }
+  
+  getCurrentAdmin() {
+    return this.currentAdmin.value;
+  }
+
+  setCurrentAdmin(admin: Admin): void {
+    this.currentAdmin.next(admin);
+    if (this.isBrowser) {
+      localStorage.setItem('currentAdmin', JSON.stringify(admin));
     }
   }
 }

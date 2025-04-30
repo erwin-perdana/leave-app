@@ -3,9 +3,9 @@
     {
       "id": "1",
       "firstName": "Admin",
-      "lastName": "User",
+      "lastName": "User2",
       "email": "admin@gmail.com",
-      "birthDate": "1998-01-01",
+      "birthDate": "1998-01-01T00:00:00.000Z",
       "gender": "male",
       "password": "admin123"
     },

@@ -3,6 +3,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AdminComponent } from './pages/admin/admin/admin.component';
 import { authGuard } from './guards/auth.guards';
 import { AdminFormComponent } from './pages/admin/admin-form/admin-form.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -15,5 +16,6 @@ export const routes: Routes = [
     { path: 'admin', component: AdminComponent, canActivate: [authGuard], pathMatch: 'prefix' },
     { path: 'admin/new', component: AdminFormComponent, canActivate: [authGuard], pathMatch: 'prefix' },
     { path: 'admin/edit/:id', component: AdminFormComponent, canActivate: [authGuard], pathMatch: 'full' },
+    { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
     { path: '**', redirectTo: '/dashboard' }
 ];

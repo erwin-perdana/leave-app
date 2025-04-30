@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Admin } from '../../../models/admin.model';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AdminService } from '../../../services/admin.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
@@ -26,7 +26,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterModule
   ],
   templateUrl: './admin-form.component.html',
   styleUrl: './admin-form.component.css',
@@ -35,7 +36,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class AdminFormComponent {
   adminForm: FormGroup;
   isEditMode = false;
-  adminId: number | null = null;
+  adminId: string = "";
 
   constructor(
     private fb: FormBuilder,
@@ -58,13 +59,13 @@ export class AdminFormComponent {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.isEditMode = true;
-        this.adminId = +params['id'];
+        this.adminId = params['id'];
         this.loadAdminData(this.adminId);
       }
     });
   }
 
-  loadAdminData(id: number): void {
+  loadAdminData(id: string): void {
     this.adminService.getAdmin(id).subscribe({
       next: (admin) => {
         const { password, ...adminData } = admin;

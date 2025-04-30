@@ -49,7 +49,7 @@ export class AdminComponent {
     });
   }
 
-  deleteAdmin(id: number) {
+  deleteAdmin(id: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { title: 'Confirm Delete', message: 'Are you sure you want to delete this admin?' }
     });

@@ -15,7 +15,7 @@ export class AdminService {
     return this.http.get<Admin[]>(this.apiUrl);
   }
 
-  getAdmin(id: number): Observable<Admin> {
+  getAdmin(id: string): Observable<Admin> {
     return this.http.get<Admin>(`${this.apiUrl}/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class AdminService {
     return this.http.post<Admin>(this.apiUrl, admin);
   }
 
-  updateAdmin(id: number, admin: Admin): Observable<Admin> {
+  updateAdmin(id: string, admin: Admin): Observable<Admin> {
     return this.http.put<Admin>(`${this.apiUrl}/${id}`, admin);
   }
 
-  deleteAdmin(id: number): Observable<void> {
+  deleteAdmin(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
