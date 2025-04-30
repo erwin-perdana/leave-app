@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <span>Leave App</span>
+    <span class="spacer"></span>
+    <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>account_circle</mat-icon>
+        Admin User
+    </button>
+    <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>

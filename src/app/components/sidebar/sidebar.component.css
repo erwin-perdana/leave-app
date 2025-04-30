@@ -1,0 +1,6 @@
+.active {
+    background-color: rgba(0,0,0,0.1);
+  }
+.mat-icon {
+    margin-right: 8px;
+}
