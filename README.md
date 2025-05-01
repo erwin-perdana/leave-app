@@ -12,12 +12,15 @@ Leave management system built with Angular for the frontend and JSON Server as t
    cd leave-app
 
 2. **Install dependencies**
-  npm install
+   ```bash
+    npm install
 
-3. **Running the Application**
-To run angular and json server, you can use
+4. **Running the Application**
+
+  To run angular and json server, you can use
+  ```bash
   npm run start:all
-
-Note: You can see admin credentials inside db.json in admin property
+  ```
+  Note: You can see admin credentials inside db.json in admin property
 
 
