@@ -19,6 +19,7 @@ import { generateId } from '../../../utils/common.utils';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -26,7 +27,6 @@ import { generateId } from '../../../utils/common.utils';
     MatDatepickerModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule,
     MatSnackBarModule,
     RouterModule
   ],

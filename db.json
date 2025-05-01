@@ -56,5 +56,23 @@
       "gender": "male",
       "address": "test"
     }
+  ],
+  "leaves": [
+    {
+      "id": "1",
+      "employeeId": "365945",
+      "reason": "Cuti tahunan",
+      "startDate": "2023-01-01T00:00:00.000Z",
+      "endDate": "2023-01-02T00:00:00.000Z",
+      "status": "pending"
+    },
+    {
+      "id": "4bcf",
+      "reason": "aaa",
+      "startDate": "2025-04-30T17:00:00.000Z",
+      "endDate": "2025-04-30T17:00:00.000Z",
+      "employeeId": "365945",
+      "status": "pending"
+    }
   ]
 }

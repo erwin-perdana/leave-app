@@ -1,0 +1,50 @@
+<div class="leave-header">
+    <h2>Leave Management</h2>
+    <button mat-raised-button color="primary" [routerLink]="['/employees', employeeId, 'leaves', 'new']">
+      Add Leave
+    </button>
+  </div>
+  
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef>Reason</mat-header-cell>
+      <mat-cell *matCellDef="let leave">{{ leave.reason }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="startDate">
+      <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
+      <mat-cell *matCellDef="let leave">{{ leave.startDate | date }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="endDate">
+      <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
+      <mat-cell *matCellDef="let leave">{{ leave.endDate | date }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="days">
+      <mat-header-cell *matHeaderCellDef>Days</mat-header-cell>
+      <mat-cell *matCellDef="let leave">{{ leave.days }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let leave">
+        <span [class]="leave.status">{{ leave.status }}</span>
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let leave">
+        <button mat-icon-button [routerLink]="['/employees', employeeId, 'leaves', 'edit', leave.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteLeave(leave.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

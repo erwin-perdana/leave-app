@@ -6,6 +6,8 @@ import { AdminFormComponent } from './pages/admin/admin-form/admin-form.componen
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EmployeeComponent } from './pages/employee/employee/employee.component';
 import { EmployeeFormComponent } from './pages/employee/employee-form/employee-form.component';
+import { LeaveComponent } from './pages/leave/leave/leave.component';
+import { LeaveFormComponent } from './pages/leave/leave-form/leave-form.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -22,5 +24,8 @@ export const routes: Routes = [
     { path: 'employee', component: EmployeeComponent, canActivate: [authGuard], pathMatch: 'prefix' },
     { path: 'employee/new', component: EmployeeFormComponent, canActivate: [authGuard], pathMatch: 'prefix' },
     { path: 'employee/edit/:id', component: EmployeeFormComponent, canActivate: [authGuard], pathMatch: 'full' },
+    { path: 'employees/:employeeId/leaves', component: LeaveComponent, canActivate: [authGuard], pathMatch: 'prefix' },
+    { path: 'employees/:employeeId/leaves/new', component: LeaveFormComponent, canActivate: [authGuard], pathMatch: 'prefix' },
+    { path: 'employees/:employeeId/leaves/edit/:id', component: LeaveFormComponent, canActivate: [authGuard], pathMatch: 'full' },
     { path: '**', redirectTo: '/dashboard' }
 ];
