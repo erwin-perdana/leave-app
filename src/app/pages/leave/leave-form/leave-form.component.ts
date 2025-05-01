@@ -102,7 +102,6 @@ export class LeaveFormComponent {
           this.router.navigate(['/employees', this.employeeId, 'leaves']);
         },
         error: (error) => {
-          console.log("error ", error)
           this.snackBar.open(`Failed to ${this.isEditMode ? 'update' : 'create'} leave`, 'Close', { duration: 3000 });
         }
       });

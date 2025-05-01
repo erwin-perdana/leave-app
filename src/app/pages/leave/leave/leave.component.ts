@@ -6,8 +6,6 @@ import { Leave } from '../../../models/leave.model';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leave',
@@ -16,7 +14,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatIconModule,
     RouterModule,
-    MatButtonModule,
+    MatButtonModule
   ],
   templateUrl: './leave.component.html',
   styleUrl: './leave.component.css',
@@ -29,8 +27,7 @@ export class LeaveComponent {
 
   constructor(
     private leaveService: LeaveService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog
+    private route: ActivatedRoute
   ) {
     this.employeeId = this.route.snapshot.paramMap.get('employeeId') ?? "";
   }
@@ -62,17 +59,8 @@ export class LeaveComponent {
   }
 
   deleteLeave(id: string): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { title: 'Confirm Delete', message: 'Are you sure you want to delete this Leave data?' }
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.leaveService.deleteLeave(id).subscribe({
-          next: () => this.loadLeaves(),
-          error: () => {}
-        });
-      }
+    this.leaveService.deleteLeave(id).subscribe(() => {
+      this.loadLeaves();
     });
   }
 }

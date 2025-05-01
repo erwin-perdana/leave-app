@@ -1,0 +1,3 @@
+{
+    "/employees/:id/with-leaves": "/employees/:id?_embed=leaves"
+  }

@@ -39,40 +39,14 @@
   ],
   "employees": [
     {
-      "id": "1",
       "firstName": "Admin",
       "lastName": "User2",
-      "email": "admin@gmail.com",
-      "phone": "081231231",
+      "email": "user@gmail.com",
+      "phone": "081231231123123",
       "gender": "male",
-      "address": "Jl.Jakarta"
-    },
-    {
-      "id": "365945",
-      "firstName": "aa",
-      "lastName": "cc",
-      "email": "win@aaa.com",
-      "phone": "081231231232",
-      "gender": "male",
-      "address": "test"
+      "address": "Jl.Jakarta",
+      "id": "1"
     }
   ],
-  "leaves": [
-    {
-      "id": "1",
-      "employeeId": "365945",
-      "reason": "Cuti tahunan",
-      "startDate": "2023-01-01T00:00:00.000Z",
-      "endDate": "2023-01-02T00:00:00.000Z",
-      "status": "pending"
-    },
-    {
-      "id": "4bcf",
-      "reason": "aaa",
-      "startDate": "2025-04-30T17:00:00.000Z",
-      "endDate": "2025-04-30T17:00:00.000Z",
-      "employeeId": "365945",
-      "status": "pending"
-    }
-  ]
+  "leaves": []
 }

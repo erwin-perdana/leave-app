@@ -56,7 +56,7 @@ export class EmployeeComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.employeeService.deleteEmployee(id).subscribe({
+        this.employeeService.deleteEmployeeAndLeaves(id).subscribe({
           next: () => this.loadEmployees(),
           error: () => {}
         });
